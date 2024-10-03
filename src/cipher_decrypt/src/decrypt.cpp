@@ -46,6 +46,9 @@ private:
 
     std::string deciphered_msg = decipher(data.message, data.key);
 
+    RCLCPP_INFO(this->get_logger(), "Deciphered message is '%s'", 
+    deciphered_msg.c_str());
+
     verify_result(data.header, deciphered_msg);
   }
 
@@ -65,7 +68,7 @@ std::string decipher(std::string message, int key) {
   for (char letter : message) {
     if (isalpha(letter)) {
       char start;
-      char shift = (std::tolower(letter) - 'a' + key) % 26;
+      char shift = (std::tolower(letter) - 'a' + 26 - key) % 26;
       (isupper(letter)) ? start = 'A' : start = 'a';
       result += (start + shift);
     } else {
