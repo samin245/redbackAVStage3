@@ -17,8 +17,6 @@ ament_target_dependencies(cipher rclcpp std_msgs cipher_interfaces)
 
 install(TARGETS
   cipher
-  server
-  talker
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
